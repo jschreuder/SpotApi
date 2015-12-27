@@ -1,0 +1,40 @@
+{
+    "name": "spot/api",
+    "description": "SpotApi, a web-API application framework",
+    "type": "Application",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jelmer Schreuder",
+            "email": "j.schreuder@mijnpraktijk.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "bin-dir": "bin"
+    },
+    "require": {
+        "psr/http-message-implementation": "~1.0",
+        "psr/log-implementation": "~1.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "dev-master",
+        "phpspec/prophecy": "dev-master",
+        "henrikbjorn/phpspec-code-coverage": "^2.0",
+        "zendframework/zend-diactoros": "^1.1",
+        "monolog/monolog": "^1.17",
+        "pimple/pimple": "^3.0",
+        "nikic/fast-route": "~0.6.0",
+        "tobscure/json-api": "~0.2.1"
+    },
+    "suggest": {
+        "pimple/pimple": "Required for the HttpRequestParserBus, ExecutorBus & GeneratorBus",
+        "nikic/fast-route": "Required for the HttpRequestParserBus",
+        "tobscure/json-api": "Required for the Single- and MultiEntityGenerator and ErrorHandler"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spot\\Api\\": "src"
+        }
+    }
+}
