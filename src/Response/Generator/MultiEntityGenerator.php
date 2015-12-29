@@ -10,7 +10,7 @@ use Spot\Api\Response\Message\ResponseInterface;
 use Tobscure\JsonApi\Collection;
 use Tobscure\JsonApi\Document;
 
-class MultiEntityGenerator extends SingleEntityGenerator
+class MultiEntityGenerator extends AbstractSerializingGenerator
 {
     public function generateResponse(ResponseInterface $response) : HttpResponse
     {
