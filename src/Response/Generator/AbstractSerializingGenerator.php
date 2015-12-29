@@ -2,15 +2,12 @@
 
 namespace Spot\Api\Response\Generator;
 
-use Psr\Http\Message\ResponseInterface as HttpResponse;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use Spot\Api\Response\Http\JsonApiErrorResponse;
-use Spot\Api\Response\Http\JsonApiResponse;
 use Spot\Api\LoggableTrait;
+use Spot\Api\Response\Http\JsonApiErrorResponse;
 use Spot\Api\Response\Message\ResponseInterface;
 use Tobscure\JsonApi\Document;
-use Tobscure\JsonApi\Resource;
 use Tobscure\JsonApi\SerializerInterface;
 
 abstract class AbstractSerializingGenerator implements GeneratorInterface
@@ -36,13 +33,30 @@ abstract class AbstractSerializingGenerator implements GeneratorInterface
         $this->logger = $logger;
     }
 
-    protected function metaDataGenerator(ResponseInterface $response) : array
+    /** @return  void */
+    protected function generateMetaData(ResponseInterface $response, Document $document)
     {
-        return $this->metaDataGenerator ? call_user_func($this->metaDataGenerator, $response) : [];
+        if (is_null($this->metaDataGenerator)) {
+            return;
+        }
+
+        $metaData = call_user_func($this->metaDataGenerator, $response);
+        foreach ($metaData as $key => $value) {
+            $document->addMeta($key, $value);
+        }
     }
 
     protected function getSerializer() : SerializerInterface
     {
         return $this->serializer;
+    }
+
+    protected function noDataResponse() : JsonApiErrorResponse
+    {
+        $this->log(LogLevel::ERROR, 'No data present in Response.');
+        return new JsonApiErrorResponse([
+            'title' => 'Server Error: no data to generate response from',
+            'status' => '500',
+        ], 500);
     }
 }

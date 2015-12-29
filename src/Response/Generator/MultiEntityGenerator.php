@@ -3,8 +3,6 @@
 namespace Spot\Api\Response\Generator;
 
 use Psr\Http\Message\ResponseInterface as HttpResponse;
-use Psr\Log\LogLevel;
-use Spot\Api\Response\Http\JsonApiErrorResponse;
 use Spot\Api\Response\Http\JsonApiResponse;
 use Spot\Api\Response\Message\ResponseInterface;
 use Tobscure\JsonApi\Collection;
@@ -15,19 +13,15 @@ class MultiEntityGenerator extends AbstractSerializingGenerator
     public function generateResponse(ResponseInterface $response) : HttpResponse
     {
         if (!isset($response['data']) || !is_array($response['data'])) {
-            $this->log(LogLevel::ERROR, 'No set of data present in Response.');
-            return new JsonApiErrorResponse([
-                'title' => 'Server Error: no data to generate response from',
-                'status' => '500',
-            ], 500);
+            return $this->noDataResponse();
         }
 
         $collection = (new Collection($response['data'], $this->getSerializer()))
             ->with(isset($response['includes']) ? $response['includes'] : []);
+
         $document = new Document($collection);
-        foreach ($this->metaDataGenerator($response) as $key => $value) {
-            $document->addMeta($key, $value);
-        }
+        $this->generateMetaData($response, $document);
+
         return new JsonApiResponse($document);
     }
 }
