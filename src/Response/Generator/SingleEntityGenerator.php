@@ -15,7 +15,6 @@ class SingleEntityGenerator extends AbstractSerializingGenerator
 
     protected function generateData(ResponseInterface $response) : ElementInterface
     {
-        return (new Resource($response['data'], $this->getSerializer()))
-            ->with(isset($response['includes']) ? $response['includes'] : []);
+        return new Resource($response['data'], $this->getSerializer());
     }
 }

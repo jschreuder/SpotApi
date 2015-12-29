@@ -68,7 +68,9 @@ abstract class AbstractSerializingGenerator implements GeneratorInterface
             ], 500);
         }
 
-        $document = new Document($this->generateData($response));
+        $element = $this->generateData($response)
+            ->with(isset($response['includes']) ? $response['includes'] : []);
+        $document = new Document($element);
         $this->generateMetaData($response, $document);
 
         return new JsonApiResponse($document);

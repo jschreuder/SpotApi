@@ -15,7 +15,6 @@ class MultiEntityGenerator extends AbstractSerializingGenerator
 
     protected function generateData(ResponseInterface $response) : ElementInterface
     {
-        return (new Collection($response['data'], $this->getSerializer()))
-            ->with(isset($response['includes']) ? $response['includes'] : []);
+        return new Collection($response['data'], $this->getSerializer());
     }
 }
