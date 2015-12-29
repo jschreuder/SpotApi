@@ -20,27 +20,25 @@ class JsonApiParser implements ApplicationInterface
     /** {@inheritdoc} */
     public function execute(ServerHttpRequest $httpRequest) : HttpResponse
     {
-        // Only works on requests with JSON bodies
-        if (strpos($httpRequest->getHeaderLine('Content-Type'), 'application/vnd.api+json') === false) {
-            return $this->application->execute($httpRequest);
-        }
+        // Only works on requests with non-empty JSON bodies
         $body = $httpRequest->getBody()->getContents();
-
-        // If there's no body, there's nothing to do here
-        if (!$body) {
+        if ($httpRequest->getHeaderLine('Content-Type') === 'application/vnd.api+json' || empty($body)) {
             return $this->application->execute($httpRequest);
         }
-        $parsedBody = json_decode($body, true);
 
-        // If an error occurred, duck out now
+        $parsedBody = json_decode($body, true);
+        $this->checkForJsonError();
+
+        return $this->application->execute($httpRequest->withParsedBody($parsedBody));
+    }
+
+    private function checkForJsonError()
+    {
         if (json_last_error() !== JSON_ERROR_NONE) {
             return new JsonApiErrorResponse([
                 'title' => 'Invalid JSON, couldn\'t decode.',
                 'status' => '400'
             ], 400);
         }
-
-        // Everything is well, continue on with parsed JSON body
-        return $this->application->execute($httpRequest->withParsedBody($parsedBody));
     }
 }
