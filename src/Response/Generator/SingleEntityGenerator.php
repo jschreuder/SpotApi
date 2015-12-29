@@ -2,26 +2,20 @@
 
 namespace Spot\Api\Response\Generator;
 
-use Psr\Http\Message\ResponseInterface as HttpResponse;
-use Spot\Api\Response\Http\JsonApiResponse;
 use Spot\Api\Response\Message\ResponseInterface;
-use Tobscure\JsonApi\Document;
+use Tobscure\JsonApi\ElementInterface;
 use Tobscure\JsonApi\Resource;
 
 class SingleEntityGenerator extends AbstractSerializingGenerator
 {
-    public function generateResponse(ResponseInterface $response) : HttpResponse
+    protected function validResponse(ResponseInterface $response) : bool
     {
-        if (!isset($response['data'])) {
-            return $this->noDataResponse();
-        }
+        return isset($response['data']);
+    }
 
-        $resource = (new Resource($response['data'], $this->getSerializer()))
+    protected function generateData(ResponseInterface $response) : ElementInterface
+    {
+        return (new Resource($response['data'], $this->getSerializer()))
             ->with(isset($response['includes']) ? $response['includes'] : []);
-
-        $document = new Document($resource);
-        $this->generateMetaData($response, $document);
-
-        return new JsonApiResponse($document);
     }
 }

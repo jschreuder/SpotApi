@@ -2,12 +2,15 @@
 
 namespace Spot\Api\Response\Generator;
 
+use Psr\Http\Message\ResponseInterface as HttpResponse;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Spot\Api\LoggableTrait;
 use Spot\Api\Response\Http\JsonApiErrorResponse;
+use Spot\Api\Response\Http\JsonApiResponse;
 use Spot\Api\Response\Message\ResponseInterface;
 use Tobscure\JsonApi\Document;
+use Tobscure\JsonApi\ElementInterface;
 use Tobscure\JsonApi\SerializerInterface;
 
 abstract class AbstractSerializingGenerator implements GeneratorInterface
@@ -33,6 +36,10 @@ abstract class AbstractSerializingGenerator implements GeneratorInterface
         $this->logger = $logger;
     }
 
+    abstract protected function validResponse(ResponseInterface $response) : bool;
+
+    abstract protected function generateData(ResponseInterface $response) : ElementInterface;
+
     /** @return  void */
     protected function generateMetaData(ResponseInterface $response, Document $document)
     {
@@ -51,12 +58,19 @@ abstract class AbstractSerializingGenerator implements GeneratorInterface
         return $this->serializer;
     }
 
-    protected function noDataResponse() : JsonApiErrorResponse
+    public function generateResponse(ResponseInterface $response) : HttpResponse
     {
-        $this->log(LogLevel::ERROR, 'No data present in Response.');
-        return new JsonApiErrorResponse([
-            'title' => 'Server Error: no data to generate response from',
-            'status' => '500',
-        ], 500);
+        if (!$this->validResponse($response)) {
+            $this->log(LogLevel::ERROR, 'No data present in Response.');
+            return new JsonApiErrorResponse([
+                'title' => 'Server Error: no data to generate response from',
+                'status' => '500',
+            ], 500);
+        }
+
+        $document = new Document($this->generateData($response));
+        $this->generateMetaData($response, $document);
+
+        return new JsonApiResponse($document);
     }
 }
