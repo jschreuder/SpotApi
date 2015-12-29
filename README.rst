@@ -11,21 +11,20 @@ SpotApi
    :target: https://scrutinizer-ci.com/g/WebspotCode/SpotApi/?branch=master
    :alt: Code Coverage
 
-At the moment this is very much just a proof-of-concept. There are many tasks
-for which a literal MVC implementation isn't ideal in my opinion. The 3 main
-ingredients are still very much present here though: the domain layer (Model),
-the presentational layer (View) and application control (Controller) are still
-very much present.
+There are many tasks for which a literal MVC implementation isn't ideal. The
+three main ingredients are still very much present here though: the domain
+layer (Model), the presentational layer (View) and application flow
+(Controller) are still very much present.
 
-But instead of modeling any of these directly as classes, I tried to model each
-more conceptually and acknowledge the fact that PHP applications are basically
-HTTP request handlers.
+But instead of modeling any of these directly, this package attempts to model
+it more conceptually and acknowledge the fact that PHP applications are
+basically HTTP request handlers.
 
 The Application
 ---------------
 
-When you go into the `Spot\Api\Application` namespace you'll see the execution
-runs through 3 stages:
+When you go into the `Application` class you'll see the execution runs through
+these three stages:
 
 **1. HTTP Request mapping (routing & request validation)**
 
