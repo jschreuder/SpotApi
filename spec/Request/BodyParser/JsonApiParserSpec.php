@@ -49,11 +49,14 @@ class JsonApiParserSpec extends ObjectBehavior
 
     /**
      * @param  \Psr\Http\Message\ServerRequestInterface $httpRequest
+     * @param  \Psr\Http\Message\StreamInterface $body
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
-    public function it_wontTouchNonJsonApiRequests($httpRequest, $httpResponse)
+    public function it_wontTouchNonJsonApiRequests($httpRequest, $body, $httpResponse)
     {
         $httpRequest->getHeaderLine('Content-Type')->willReturn('text/html');
+        $httpRequest->getBody()->willReturn($body);
+        $body->getContents()->willReturn('test');
         $this->application->execute($httpRequest)->willReturn($httpResponse);
         $this->execute($httpRequest)->shouldReturn($httpResponse);
     }

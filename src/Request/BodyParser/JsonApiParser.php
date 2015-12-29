@@ -22,23 +22,18 @@ class JsonApiParser implements ApplicationInterface
     {
         // Only works on requests with non-empty JSON bodies
         $body = $httpRequest->getBody()->getContents();
-        if ($httpRequest->getHeaderLine('Content-Type') === 'application/vnd.api+json' || empty($body)) {
+        if ($httpRequest->getHeaderLine('Content-Type') !== 'application/vnd.api+json' || empty($body)) {
             return $this->application->execute($httpRequest);
         }
 
         $parsedBody = json_decode($body, true);
-        $this->checkForJsonError();
-
-        return $this->application->execute($httpRequest->withParsedBody($parsedBody));
-    }
-
-    private function checkForJsonError()
-    {
         if (json_last_error() !== JSON_ERROR_NONE) {
             return new JsonApiErrorResponse([
                 'title' => 'Invalid JSON, couldn\'t decode.',
                 'status' => '400'
             ], 400);
         }
+
+        return $this->application->execute($httpRequest->withParsedBody($parsedBody));
     }
 }
