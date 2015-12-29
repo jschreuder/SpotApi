@@ -54,24 +54,12 @@ class HttpRequestParserBus implements HttpRequestParserInterface
     /** {@inheritdoc} */
     public function parseHttpRequest(ServerHttpRequest $httpRequest, array $attributes) : RequestInterface
     {
-        $method = $httpRequest->getMethod();
-        $path = $httpRequest->getUri()->getPath();
-        $routeInfo = $this->getRouter()->dispatch($method, $path);
         try {
-            switch ($routeInfo[0]) {
-                case Router::NOT_FOUND:
-                case Router::METHOD_NOT_ALLOWED:
-                    $this->log(LogLevel::INFO, 'No route found for ' . $method . ' ' . $path);
-                    $request = new NotFoundRequest([], $httpRequest);
-                    break;
-                case Router::FOUND:
-                    $parser = $this->getHttpRequestParser($routeInfo[1]);
-                    $request = $parser->parseHttpRequest($httpRequest, array_merge($attributes, $routeInfo[2]));
-                    $this->log(LogLevel::INFO, 'Found route found for ' . $method . ' ' . $path);
-                    break;
-                default:
-                    throw new \RuntimeException('Routing erred for ' . $method . ' ' . $path);
-            }
+            $routeInfo = $this->getRouter()->dispatch(
+                $httpRequest->getMethod(),
+                $httpRequest->getUri()->getPath()
+            );
+            $request = $this->getRequest($routeInfo, $httpRequest, $attributes);
         } catch (RequestException $exception) {
             $request = $exception->getRequestObject();
         } catch (\Throwable $exception) {
@@ -79,6 +67,25 @@ class HttpRequestParserBus implements HttpRequestParserInterface
             $request = new ServerErrorRequest([], $httpRequest);
         }
 
+        return $request;
+    }
+
+    private function getRequest(array $routeInfo, ServerHttpRequest $httpRequest, array $attributes) : RequestInterface
+    {
+        switch ($routeInfo[0]) {
+            case Router::NOT_FOUND:
+            case Router::METHOD_NOT_ALLOWED:
+                $this->log(LogLevel::INFO, 'No route found: ' . $httpRequest->getUri()->getPath());
+                $request = new NotFoundRequest([], $httpRequest);
+                break;
+            case Router::FOUND:
+                $parser = $this->getHttpRequestParser($routeInfo[1]);
+                $request = $parser->parseHttpRequest($httpRequest, array_merge($attributes, $routeInfo[2]));
+                $this->log(LogLevel::INFO, 'Route found: ' . $routeInfo[1]);
+                break;
+            default:
+                throw new RequestException('Routing error', new ServerErrorRequest([], $httpRequest));
+        }
         return $request;
     }
 }
