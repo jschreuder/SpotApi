@@ -25,9 +25,6 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
     /** @var  \Spot\Api\Response\Generator\GeneratorBus */
     private $generatorBus;
 
-    /** @var  object[] */
-    private $modules;
-
     /**
      * @param  \Pimple\Container $container
      * @param  \Spot\Api\Request\HttpRequestParser\HttpRequestParserBus $router
@@ -42,9 +39,8 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
         $this->routeCollector = $routeCollector;
         $this->executorBus = $executorBus;
         $this->generatorBus = $generatorBus;
-        $this->modules = [new \stdClass()];
 
-        $this->beConstructedWith($container, $router, $routeCollector, $executorBus, $generatorBus, $this->modules);
+        $this->beConstructedWith($container, $router, $routeCollector, $executorBus, $generatorBus);
     }
 
     public function it_isInitializable()
@@ -66,9 +62,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
         $repoModule->registerRepositories($this->container)
             ->shouldBeCalled();
 
-        $this->addModule($serviceModule);
-        $this->addModule($routeModule);
-        $this->addModule($repoModule);
+        $this->addModules([$serviceModule, $routeModule, $repoModule]);
     }
 
     public function it_canAddARequestParser()

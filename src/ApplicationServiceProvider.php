@@ -40,8 +40,7 @@ class ApplicationServiceProvider implements ServiceProviderInterface
         HttpRequestParserBus $router,
         RouteCollector $routeCollector,
         ExecutorBus $executorBus,
-        GeneratorBus $generatorBus,
-        array $modules
+        GeneratorBus $generatorBus
     ) {
         $this->container = $container;
         $this->router = $router;
@@ -49,28 +48,34 @@ class ApplicationServiceProvider implements ServiceProviderInterface
         $this->executorBus = $executorBus;
         $this->generatorBus = $generatorBus;
 
+        $this->setupRegistrars();
+    }
+
+    private function setupRegistrars()
+    {
         $this->moduleRegistrars = [
             new \ReflectionMethod($this, 'registerServices'),
             new \ReflectionMethod($this, 'registerRouting'),
             new \ReflectionMethod($this, 'registerRepositories'),
         ];
-
-        foreach ($modules as $module) {
-            $this->addModule($module);
-        }
     }
 
-    /**
-     * @param   ServiceProviderInterface|RepositoryProviderInterface|RoutingProviderInterface $module
-     * @return  void
-     */
-    public function addModule($module)
+    public function addModule($module) : ApplicationServiceProvider
     {
         foreach ($this->moduleRegistrars as $moduleRegistrar) {
             if ($moduleRegistrar->getParameters()[0]->getClass()->isInstance($module)) {
                 $moduleRegistrar->invoke($this, $module);
             }
         }
+        return $this;
+    }
+
+    public function addModules(array $modules) : ApplicationServiceProvider
+    {
+        foreach ($modules as $module) {
+            $this->addModule($module);
+        }
+        return $this;
     }
 
     public function registerServices(ServiceProviderInterface $serviceProvider)
@@ -127,7 +132,7 @@ class ApplicationServiceProvider implements ServiceProviderInterface
     /** {@inheritdoc} */
     public function register(Container $container)
     {
-        $container['app'] = function (Container $container) {
+        $container['app'] = function(Container $container) {
             return new Application(
                 $this->getHttpRequestParser(),
                 $this->getExecutor(),
