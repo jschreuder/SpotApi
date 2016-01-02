@@ -1,14 +1,14 @@
 <?php
 
-namespace spec\Spot\Api\Request\BodyParser;
+namespace spec\Spot\Api\Middleware;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Spot\Api\Response\Http\JsonApiErrorResponse;
-use Spot\Api\Request\BodyParser\JsonApiParser;
+use Spot\Api\Middleware\JsonApiRequestParser;
 
-/** @mixin  JsonApiParser */
-class JsonApiParserSpec extends ObjectBehavior
+/** @mixin  JsonApiRequestParser */
+class JsonApiRequestParserSpec extends ObjectBehavior
 {
     /** @var  \Spot\Api\ApplicationInterface */
     private $application;
@@ -24,7 +24,7 @@ class JsonApiParserSpec extends ObjectBehavior
 
     public function it_isInitializable()
     {
-        $this->shouldHaveType(JsonApiParser::class);
+        $this->shouldHaveType(JsonApiRequestParser::class);
     }
 
     /**
