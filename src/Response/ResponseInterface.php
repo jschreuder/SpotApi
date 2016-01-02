@@ -2,8 +2,6 @@
 
 namespace Spot\Api\Response;
 
-use Spot\Api\Response\Message\string;
-
 interface ResponseInterface extends \ArrayAccess
 {
     public function getResponseName() : string;
