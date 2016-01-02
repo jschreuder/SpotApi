@@ -43,7 +43,7 @@ class SingleEntityGeneratorSpec extends ObjectBehavior
         $this->beConstructedWith($this->serializer, $this->callable, $this->logger);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(SingleEntityGenerator::class);
     }
@@ -52,7 +52,7 @@ class SingleEntityGeneratorSpec extends ObjectBehavior
      * @param  \Spot\Api\Response\Message\Response $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
-    public function it_canGenerateAResponse($response, $httpRequest)
+    public function it_can_generate_a_response($response, $httpRequest)
     {
         $entity = (object) ['id' => 42, 'title' => 'life'];
         $response->offsetExists('data')->willReturn(true);
@@ -76,7 +76,7 @@ class SingleEntityGeneratorSpec extends ObjectBehavior
      * @param  \Tobscure\JsonApi\Relationship $relation
      * @param  \Tobscure\JsonApi\ElementInterface $element
      */
-    public function it_canGenerateAResponseWithInclude($response, $httpRequest, $relation, $element)
+    public function it_can_generate_a_response_with_include($response, $httpRequest, $relation, $element)
     {
         $entity = (object) ['id' => 42, 'title' => 'life'];
         $response->offsetExists('data')->willReturn(true);
@@ -106,7 +106,7 @@ class SingleEntityGeneratorSpec extends ObjectBehavior
      * @param  \Spot\Api\Response\Message\Response $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
-    public function it_canGenerateAResponseWithMetaData($response, $httpRequest)
+    public function it_can_generate_a_response_with_meta_data($response, $httpRequest)
     {
         $entity = (object) ['id' => 42, 'title' => 'life'];
         $response->offsetExists('data')->willReturn(true);
@@ -128,7 +128,7 @@ class SingleEntityGeneratorSpec extends ObjectBehavior
      * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
-    public function it_willErrorOnNonArrayResponse($response, $httpRequest)
+    public function it_will_error_on_non_array_response($response, $httpRequest)
     {
         $httpResponse = $this->generateResponse($response, $httpRequest);
         $httpResponse->shouldHaveType(JsonApiErrorResponse::class);
@@ -138,7 +138,7 @@ class SingleEntityGeneratorSpec extends ObjectBehavior
      * @param  \Spot\Api\Response\Message\Response $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
-    public function it_willErrorOnEmptyDataResponse($response, $httpRequest)
+    public function it_will_error_on_empty_data_response($response, $httpRequest)
     {
         $response->offsetExists('data')->willReturn(false);
         $httpResponse = $this->generateResponse($response, $httpRequest);

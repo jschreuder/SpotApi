@@ -29,24 +29,24 @@ class ResponseSpec extends ObjectBehavior
         $this->beConstructedWith($this->name, $this->data, $request);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(Response::class);
     }
 
-    public function it_canGiveItsName()
+    public function it_can_give_its_name()
     {
         $this->getResponseName()
             ->shouldReturn($this->name);
     }
 
-    public function it_canGiveItsData()
+    public function it_can_give_its_data()
     {
         $this->getAttributes()
             ->shouldReturn($this->data);
     }
 
-    public function it_canGetItsContentType()
+    public function it_can_get_its_content_type()
     {
         $this->getContentType()
             ->shouldReturn($this->contentType);

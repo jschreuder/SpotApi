@@ -30,7 +30,7 @@ class ExecutorBusSpec extends ObjectBehavior
         $this->beConstructedWith($this->container, $logger);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(\Spot\Api\Request\Executor\ExecutorBus::class);
     }
@@ -38,7 +38,7 @@ class ExecutorBusSpec extends ObjectBehavior
     /**
      * @param  \Spot\Api\Request\RequestInterface $request
      */
-    public function it_canExecuteSuccessfully($request)
+    public function it_can_execute_successfully($request)
     {
         $request->getAcceptContentType()->willReturn('application/vnd.api+json');
         $requestName = 'request.name';
@@ -69,7 +69,7 @@ class ExecutorBusSpec extends ObjectBehavior
     /**
      * @param  \Spot\Api\Request\RequestInterface $request
      */
-    public function it_willErrorOnUnsupportedRequest($request)
+    public function it_will_error_on_unsupported_request($request)
     {
         $requestName = 'request.name';
         $request->getRequestName()
@@ -82,7 +82,7 @@ class ExecutorBusSpec extends ObjectBehavior
     /**
      * @param  \Spot\Api\Request\RequestInterface $request
      */
-    public function it_willErrorOnUndefinedExecutor($request)
+    public function it_will_error_on_undefined_Executor($request)
     {
         $requestName = 'request.name';
         $executorName = 'executor.test';
@@ -100,7 +100,7 @@ class ExecutorBusSpec extends ObjectBehavior
     /**
      * @param  \Spot\Api\Request\RequestInterface $request
      */
-    public function it_willErrorOnInvalidExecutor($request)
+    public function it_will_error_on_invalid_Executor($request)
     {
         $requestName = 'request.name';
         $executorName = 'executor.test';

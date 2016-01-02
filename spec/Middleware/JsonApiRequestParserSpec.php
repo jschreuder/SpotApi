@@ -22,7 +22,7 @@ class JsonApiRequestParserSpec extends ObjectBehavior
         $this->beConstructedWith($application);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(JsonApiRequestParser::class);
     }
@@ -33,7 +33,7 @@ class JsonApiRequestParserSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\StreamInterface $body
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
-    public function it_canExecute($httpRequest1, $httpRequest2, $body, $httpResponse)
+    public function it_can_execute($httpRequest1, $httpRequest2, $body, $httpResponse)
     {
         $array = ['body' => 'the answer to life, the universe and everything', 'status' => 42];
 
@@ -52,7 +52,7 @@ class JsonApiRequestParserSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\StreamInterface $body
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
-    public function it_wontTouchNonJsonApiRequests($httpRequest, $body, $httpResponse)
+    public function it_wont_touch_non_json_api_requests($httpRequest, $body, $httpResponse)
     {
         $httpRequest->getHeaderLine('Content-Type')->willReturn('text/html');
         $httpRequest->getBody()->willReturn($body);
@@ -66,7 +66,7 @@ class JsonApiRequestParserSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\StreamInterface $body
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
-    public function it_wontTouchRequestsWithEmptyBodies($httpRequest, $body, $httpResponse)
+    public function it_wont_touch_requests_with_empty_bodies($httpRequest, $body, $httpResponse)
     {
         $httpRequest->getHeaderLine('Content-Type')->willReturn('application/vnd.api+json');
         $httpRequest->getBody()->willReturn($body);
@@ -78,9 +78,8 @@ class JsonApiRequestParserSpec extends ObjectBehavior
     /**
      * @param  \Psr\Http\Message\ServerRequestInterface $httpRequest
      * @param  \Psr\Http\Message\StreamInterface $body
-     * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
-    public function it_willErrorOnNonJsonBody($httpRequest, $body, $httpResponse)
+    public function it_will_error_on_non_json_body($httpRequest, $body)
     {
         $httpRequest->getHeaderLine('Content-Type')->willReturn('application/vnd.api+json');
         $httpRequest->getBody()->willReturn($body);

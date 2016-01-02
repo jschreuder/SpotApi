@@ -22,12 +22,12 @@ class ResponseExceptionSpec extends ObjectBehavior
         $this->beConstructedWith('Reasons', $this->response);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(ResponseException::class);
     }
 
-    public function it_comesWithAResponseObject()
+    public function it_comes_with_a_response_object()
     {
         $this->getResponseObject()
             ->shouldReturn($this->response);

@@ -34,7 +34,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
         $this->beConstructedWith($this->container, $logger);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(\Spot\Api\Request\HttpRequestParser\HttpRequestParserBus::class);
     }
@@ -42,7 +42,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
     /**
      * @param  \FastRoute\Dispatcher $router
      */
-    public function it_canTakeARouter($router)
+    public function it_can_take_a_router($router)
     {
         $this->setRouter($router)
             ->shouldReturn($this);
@@ -52,7 +52,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\ServerRequestInterface $httpRequest
      * @param  \Psr\Http\Message\UriInterface $uri
      */
-    public function it_errorsWithoutARouter($httpRequest, $uri)
+    public function it_errors_without_a_router($httpRequest, $uri)
     {
         $method = 'GET';
         $path = '/life/universe/everything/';
@@ -71,7 +71,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\UriInterface $uri
      * @param  \FastRoute\Dispatcher $router
      */
-    public function it_canParseSuccessfully($httpRequest, $uri, $router)
+    public function it_can_parse_successfully($httpRequest, $uri, $router)
     {
         $method = 'GET';
         $path = '/life/universe/everything/';
@@ -110,7 +110,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\UriInterface $uri
      * @param  \FastRoute\Dispatcher $router
      */
-    public function it_canHandleA400($httpRequest, $uri, $router)
+    public function it_can_handle_a_400($httpRequest, $uri, $router)
     {
         $method = 'GET';
         $path = '/life/universe/everything/';
@@ -151,7 +151,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\UriInterface $uri
      * @param  \FastRoute\Dispatcher $router
      */
-    public function it_canHandleA404($httpRequest, $uri, $router)
+    public function it_can_handle_a_404($httpRequest, $uri, $router)
     {
         $method = 'GET';
         $path = '/life/universe/nothing/';
@@ -178,7 +178,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\UriInterface $uri
      * @param  \FastRoute\Dispatcher $router
      */
-    public function it_canHandleAMethodUnsupported($httpRequest, $uri, $router)
+    public function it_can_handle_a_method_unsupported($httpRequest, $uri, $router)
     {
         $method = 'DELETE';
         $path = '/life/universe/everything/';
@@ -205,7 +205,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\UriInterface $uri
      * @param  \FastRoute\Dispatcher $router
      */
-    public function it_errorsOnBadRoutingResult($httpRequest, $uri, $router)
+    public function it_errors_on_bad_routing_result($httpRequest, $uri, $router)
     {
         $method = 'GET';
         $path = '/travel/without/towel';
@@ -232,7 +232,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\UriInterface $uri
      * @param  \FastRoute\Dispatcher $router
      */
-    public function it_errorsOnInvalidHttpRequestParser($httpRequest, $uri, $router)
+    public function it_errors_on_invalid_HttpRequestParser($httpRequest, $uri, $router)
     {
         $method = 'GET';
         $path = '/bureaucracy/form/processor/';
@@ -262,7 +262,7 @@ class HttpRequestParserBusSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\UriInterface $uri
      * @param  \FastRoute\Dispatcher $router
      */
-    public function it_errorsOnInvalidRequestObject($httpRequest, $uri, $router)
+    public function it_errors_on_invalid_request_object($httpRequest, $uri, $router)
     {
         $method = 'POST';
         $path = '/submitted/just/once/';

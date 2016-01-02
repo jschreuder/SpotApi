@@ -30,7 +30,7 @@ class GeneratorBusSpec extends ObjectBehavior
         $this->beConstructedWith($this->container, $logger);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(GeneratorBus::class);
     }
@@ -38,7 +38,7 @@ class GeneratorBusSpec extends ObjectBehavior
     /**
      * @param  \Spot\Api\Response\ResponseInterface $response
      */
-    public function it_canExecuteSuccessfully($response)
+    public function it_can_execute_successfully($response)
     {
         $responseName = 'response.name';
         $httpResponse = new Response();
@@ -70,7 +70,7 @@ class GeneratorBusSpec extends ObjectBehavior
     /**
      * @param  \Spot\Api\Response\ResponseInterface $response
      */
-    public function it_willErrorOnUnsupportedRequest($response)
+    public function it_will_error_on_unsupported_request($response)
     {
         $responseName = 'request.name';
         $response->getResponseName()
@@ -85,7 +85,7 @@ class GeneratorBusSpec extends ObjectBehavior
     /**
      * @param  \Spot\Api\Response\ResponseInterface $response
      */
-    public function it_willErrorOnUndefinedGenerator($response)
+    public function it_will_error_on_undefined_Generator($response)
     {
         $responseName = 'request.name';
         $generatorName = 'executor.test';
@@ -105,7 +105,7 @@ class GeneratorBusSpec extends ObjectBehavior
     /**
      * @param  \Spot\Api\Response\ResponseInterface $response
      */
-    public function it_willErrorOnInvalidGenerator($response)
+    public function it_will_error_on_invalid_Generator($response)
     {
         $responseName = 'request.name';
         $generatorName = 'executor.test';

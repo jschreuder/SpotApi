@@ -43,7 +43,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
         $this->beConstructedWith($container, $router, $routeCollector, $executorBus, $generatorBus);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(ApplicationServiceProvider::class);
     }
@@ -53,7 +53,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
      * @param  \Spot\Api\ServiceProvider\RoutingProviderInterface $routeModule
      * @param  \Spot\Api\ServiceProvider\RepositoryProviderInterface $repoModule
      */
-    public function it_canAddModules($serviceModule, $routeModule, $repoModule)
+    public function it_can_add_modules($serviceModule, $routeModule, $repoModule)
     {
         $serviceModule->register($this->container)
             ->shouldBeCalled();
@@ -65,7 +65,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
         $this->addModules([$serviceModule, $routeModule, $repoModule]);
     }
 
-    public function it_canAddARequestParser()
+    public function it_can_add_a_request_parser()
     {
         $method = 'GET';
         $path = '/some/way';
@@ -76,7 +76,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
             ->shouldReturn($this);
     }
 
-    public function it_canAddAnExecutor()
+    public function it_can_add_an_executor()
     {
         $name = 'my.way';
         $executor = 'i.did.it';
@@ -86,7 +86,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
             ->shouldReturn($this);
     }
 
-    public function it_canAddAnGenerator()
+    public function it_can_add_an_generator()
     {
         $name = 'my.way';
         $type = 'application/song';
@@ -97,7 +97,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
             ->shouldReturn($this);
     }
 
-    public function it_canReturnTheHttpRequestParserBus()
+    public function it_can_return_the_HttpRequestParserBus()
     {
         $this->router->setRouter(new Argument\Token\TypeToken(GroupCountBasedDispatcher::class))
             ->willReturn($this->router);
@@ -105,12 +105,12 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
         $this->getHttpRequestParser()->shouldReturn($this->router);
     }
 
-    public function it_canReturnTheExecutorBus()
+    public function it_can_return_the_ExecutorBus()
     {
         $this->getExecutor()->shouldReturn($this->executorBus);
     }
 
-    public function it_canReturnTheGeneratorBus()
+    public function it_can_return_the_GeneratorBus()
     {
         $this->getGenerator()->shouldReturn($this->generatorBus);
     }
@@ -118,7 +118,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
     /**
      * @param   \Pimple\Container $container
      */
-    public function it_canRegisterTheApp($container)
+    public function it_can_register_the_app($container)
     {
         $container->offsetSet('app', new Argument\Token\TypeToken(\Closure::class))
             ->shouldBeCalled();

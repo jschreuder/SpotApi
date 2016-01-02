@@ -21,12 +21,12 @@ class JsonApiResponseSpec extends ObjectBehavior
         $this->beConstructedWith($document);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(JsonApiResponse::class);
     }
 
-    public function it_getsJsonApiContentType()
+    public function it_gets_json_api_content_type()
     {
         $this->getHeaderLine('Content-Type')->shouldReturn('application/vnd.api+json');
     }

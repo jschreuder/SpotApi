@@ -38,7 +38,7 @@ class ApplicationSpec extends ObjectBehavior
         $this->beConstructedWith($requestParser, $executor, $generator, $logger);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(Application::class);
     }
@@ -49,7 +49,7 @@ class ApplicationSpec extends ObjectBehavior
      * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
-    public function it_shouldBeAbleToSuccessfullyExecute($httpRequest, $request, $response, $httpResponse)
+    public function it_should_be_able_to_successfully_execute($httpRequest, $request, $response, $httpResponse)
     {
         $this->requestParser->parseHttpRequest($httpRequest, [])
             ->willReturn($request);
@@ -68,7 +68,7 @@ class ApplicationSpec extends ObjectBehavior
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      * @param  \Spot\Api\Request\RequestException $exception
      */
-    public function it_shouldBeAbleToHandleBadRequest($httpRequest, $request, $response, $httpResponse, $exception)
+    public function it_should_be_able_to_handle_bad_request($httpRequest, $request, $response, $httpResponse, $exception)
     {
         $exception->getRequestObject()->willReturn($request);
 
@@ -87,7 +87,7 @@ class ApplicationSpec extends ObjectBehavior
      * @param  \Spot\Api\Request\RequestInterface $request
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
-    public function it_shouldBeAbleToHandleResponseExceptions($httpRequest, $request, $httpResponse)
+    public function it_should_be_able_to_handle_response_exceptions($httpRequest, $request, $httpResponse)
     {
         $request->getAcceptContentType()->willReturn('application/vnd.api+json');
         $responseException = new ResponseException(

@@ -5,7 +5,7 @@ namespace spec\Spot\Api\Message;
 /** @mixin  \Spot\Api\Message\AttributesArrayAccessTrait */
 trait AttributesArrayAccessSpecTrait
 {
-    public function it_implementsArrayAccess()
+    public function it_implements_array_access()
     {
         $this->offsetExists('test')
             ->shouldReturn(false);
@@ -19,7 +19,7 @@ trait AttributesArrayAccessSpecTrait
             ->shouldReturn(false);
     }
 
-    public function it_canGetAtItsAttributes()
+    public function it_can_get_at_its_attributes()
     {
         $attributes = $this->getAttributes();
         $attributes->shouldBeArray();
@@ -31,7 +31,7 @@ trait AttributesArrayAccessSpecTrait
         $this->getAttributes()->shouldReturn($array);
     }
 
-    public function it_errorsOnUnknownKeys()
+    public function it_errors_on_unknown_keys()
     {
         $this->shouldThrow(\OutOfBoundsException::class)->duringOffsetGet('i-do-not-exist');
     }

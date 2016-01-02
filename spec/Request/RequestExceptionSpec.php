@@ -20,13 +20,13 @@ class RequestExceptionSpec extends ObjectBehavior
         $this->beConstructedWith('Reasons', $request);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(RequestException::class);
         $this->shouldHaveType(\Exception::class);
     }
 
-    public function it_comesWithARequestObject()
+    public function it_comes_with_a_request_object()
     {
         $this->beConstructedWith('Reasons', $this->request);
 

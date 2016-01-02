@@ -24,17 +24,17 @@ class JsonApiErrorResponseSpec extends ObjectBehavior
         $this->beConstructedWith($this->errors, $this->code);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(JsonApiErrorResponse::class);
     }
 
-    public function it_getsJsonApiContentType()
+    public function it_gets_json_api_content_type()
     {
         $this->getHeaderLine('Content-Type')->shouldReturn('application/vnd.api+json');
     }
 
-    public function it_getJsonApiBody()
+    public function it_get_json_api_body()
     {
         $body = $this->getBody();
         $body->rewind();

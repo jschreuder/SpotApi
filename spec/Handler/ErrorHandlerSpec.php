@@ -25,7 +25,7 @@ class ErrorHandlerSpec extends ObjectBehavior
         $this->beConstructedWith($this->name, $this->statusCode, $this->message);
     }
 
-    public function it_isInitializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType(\Spot\Api\Handler\ErrorHandler::class);
     }
@@ -34,7 +34,7 @@ class ErrorHandlerSpec extends ObjectBehavior
      * @param  \Spot\Api\Request\RequestInterface $request
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
-    public function it_canExecuteARequest($request)
+    public function it_can_execute_a_request($request)
     {
         $request->getAcceptContentType()->willReturn('application/vnd.api+json');
         $request->offsetExists('errors')->willReturn(false);
@@ -48,7 +48,7 @@ class ErrorHandlerSpec extends ObjectBehavior
      * @param  \Spot\Api\Request\RequestInterface $request
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
-    public function it_canPassOnErrorsToTheResponse($request)
+    public function it_can_pass_on_errors_to_the_response($request)
     {
         $errors = ['error1' => 'your first mistake', 'error2' => 'was trying to run this mess'];
         $request->getAcceptContentType()->willReturn('application/vnd.api+json');
@@ -64,7 +64,7 @@ class ErrorHandlerSpec extends ObjectBehavior
      * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
-    public function it_canGenerateAResponse($response)
+    public function it_can_generate_a_response($response)
     {
         $response->offsetExists('errors')->willReturn(false);
         $httpResponse = $this->generateResponse($response);
@@ -78,7 +78,7 @@ class ErrorHandlerSpec extends ObjectBehavior
      * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
-    public function it_canGenerateAResponseWithGivenErrors($response)
+    public function it_can_generate_a_response_with_given_errors($response)
     {
         $response->offsetExists('errors')->willReturn(true);
         $response->offsetGet('errors')->willReturn([
