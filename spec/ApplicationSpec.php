@@ -45,8 +45,8 @@ class ApplicationSpec extends ObjectBehavior
 
     /**
      * @param  \Psr\Http\Message\ServerRequestInterface $httpRequest
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Request\RequestInterface $request
+     * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
     public function it_shouldBeAbleToSuccessfullyExecute($httpRequest, $request, $response, $httpResponse)
@@ -63,8 +63,8 @@ class ApplicationSpec extends ObjectBehavior
 
     /**
      * @param  \Psr\Http\Message\ServerRequestInterface $httpRequest
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Request\RequestInterface $request
+     * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      * @param  \Spot\Api\Request\RequestException $exception
      */
@@ -84,7 +84,7 @@ class ApplicationSpec extends ObjectBehavior
 
     /**
      * @param  \Psr\Http\Message\ServerRequestInterface $httpRequest
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      * @param  \Psr\Http\Message\ResponseInterface $httpResponse
      */
     public function it_shouldBeAbleToHandleResponseExceptions($httpRequest, $request, $httpResponse)

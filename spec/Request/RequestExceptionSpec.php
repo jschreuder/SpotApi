@@ -4,7 +4,6 @@ namespace spec\Spot\Api\Request;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Spot\Api\Request\Message\Request;
 use Spot\Api\Request\RequestException;
 
 /** @mixin  RequestException */
@@ -13,7 +12,7 @@ class RequestExceptionSpec extends ObjectBehavior
     private $request;
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      */
     public function let($request)
     {

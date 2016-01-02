@@ -2,7 +2,7 @@
 
 namespace Spot\Api\Response\Generator;
 
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Response\ResponseInterface;
 use Tobscure\JsonApi\ElementInterface;
 use Tobscure\JsonApi\Resource;
 

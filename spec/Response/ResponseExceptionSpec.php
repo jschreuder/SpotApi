@@ -13,7 +13,7 @@ class ResponseExceptionSpec extends ObjectBehavior
     private $response;
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      */
     public function let($request)
     {

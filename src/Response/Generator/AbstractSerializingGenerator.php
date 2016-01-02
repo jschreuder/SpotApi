@@ -8,7 +8,7 @@ use Psr\Log\LogLevel;
 use Spot\Api\LoggableTrait;
 use Spot\Api\Response\Http\JsonApiErrorResponse;
 use Spot\Api\Response\Http\JsonApiResponse;
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Response\ResponseInterface;
 use Tobscure\JsonApi\Document;
 use Tobscure\JsonApi\ElementInterface;
 use Tobscure\JsonApi\SerializerInterface;

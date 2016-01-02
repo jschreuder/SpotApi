@@ -2,8 +2,6 @@
 
 namespace Spot\Api\Response;
 
-use Spot\Api\Response\Message\ResponseInterface;
-
 class ResponseException extends \RuntimeException
 {
     /** @var  ResponseInterface */

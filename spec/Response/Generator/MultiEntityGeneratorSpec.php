@@ -7,7 +7,7 @@ use Prophecy\Argument;
 use Spot\Api\Response\Generator\MultiEntityGenerator;
 use Spot\Api\Response\Http\JsonApiErrorResponse;
 use Spot\Api\Response\Http\JsonApiResponse;
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Response\ResponseInterface;
 
 class MultiEntityGeneratorSpec extends ObjectBehavior
 {
@@ -127,7 +127,7 @@ class MultiEntityGeneratorSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
     public function it_willErrorOnNonArrayResponse($response, $httpRequest)

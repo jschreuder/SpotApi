@@ -5,10 +5,9 @@ namespace spec\Spot\Api\Response\Generator;
 use PhpSpec\ObjectBehavior;
 use Pimple\Container;
 use Prophecy\Argument;
-use Psr\Http\Message\RequestInterface as HttpRequest;
 use Psr\Http\Message\ResponseInterface as HttpResponse;
 use Spot\Api\Response\Generator\GeneratorInterface;
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Response\ResponseInterface;
 use Spot\Api\Response\Generator\GeneratorBus;
 use Zend\Diactoros\Response;
 
@@ -37,7 +36,7 @@ class GeneratorBusSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Response\ResponseInterface $response
      */
     public function it_canExecuteSuccessfully($response)
     {
@@ -69,7 +68,7 @@ class GeneratorBusSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Response\ResponseInterface $response
      */
     public function it_willErrorOnUnsupportedRequest($response)
     {
@@ -84,7 +83,7 @@ class GeneratorBusSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Response\ResponseInterface $response
      */
     public function it_willErrorOnUndefinedGenerator($response)
     {
@@ -104,7 +103,7 @@ class GeneratorBusSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Response\ResponseInterface $response
      */
     public function it_willErrorOnInvalidGenerator($response)
     {

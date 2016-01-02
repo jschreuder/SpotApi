@@ -6,9 +6,9 @@ use PhpSpec\ObjectBehavior;
 use Pimple\Container;
 use Prophecy\Argument;
 use Spot\Api\Request\Executor\ExecutorInterface;
-use Spot\Api\Request\Message\RequestInterface;
+use Spot\Api\Request\RequestInterface;
 use Spot\Api\Response\Message\Response;
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Response\ResponseInterface;
 use Spot\Api\Response\ResponseException;
 
 /** @mixin  \Spot\Api\Request\Executor\ExecutorBus */
@@ -36,7 +36,7 @@ class ExecutorBusSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      */
     public function it_canExecuteSuccessfully($request)
     {
@@ -67,7 +67,7 @@ class ExecutorBusSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      */
     public function it_willErrorOnUnsupportedRequest($request)
     {
@@ -80,7 +80,7 @@ class ExecutorBusSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      */
     public function it_willErrorOnUndefinedExecutor($request)
     {
@@ -98,7 +98,7 @@ class ExecutorBusSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      */
     public function it_willErrorOnInvalidExecutor($request)
     {

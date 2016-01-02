@@ -3,7 +3,7 @@
 namespace Spot\Api\Response\Generator;
 
 use Psr\Http\Message\ResponseInterface as HttpResponse;
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Response\ResponseInterface;
 
 interface GeneratorInterface
 {

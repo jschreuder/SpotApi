@@ -2,8 +2,6 @@
 
 namespace Spot\Api\Request;
 
-use Spot\Api\Request\Message\RequestInterface;
-
 class RequestException extends \RuntimeException
 {
     /** @var  RequestInterface */

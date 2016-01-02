@@ -19,7 +19,7 @@ class NotFoundResponseSpec extends ObjectBehavior
     private $request;
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      */
     public function let($request)
     {

@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Spot\Api\Request\Message;
+namespace Spot\Api\Request;
 
 interface RequestInterface extends \ArrayAccess
 {

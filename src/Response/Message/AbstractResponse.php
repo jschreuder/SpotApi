@@ -3,7 +3,8 @@
 namespace Spot\Api\Response\Message;
 
 use Spot\Api\Message\AttributesArrayAccessTrait;
-use Spot\Api\Request\Message\RequestInterface;
+use Spot\Api\Request\RequestInterface;
+use Spot\Api\Response\ResponseInterface;
 
 abstract class AbstractResponse implements ResponseInterface
 {

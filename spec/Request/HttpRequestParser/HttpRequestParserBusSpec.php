@@ -11,7 +11,7 @@ use Spot\Api\Request\HttpRequestParser\HttpRequestParserInterface;
 use Spot\Api\Request\Message\BadRequest;
 use Spot\Api\Request\Message\Request;
 use Spot\Api\Request\Message\NotFoundRequest;
-use Spot\Api\Request\Message\RequestInterface;
+use Spot\Api\Request\RequestInterface;
 use Spot\Api\Request\Message\ServerErrorRequest;
 use Spot\Api\Request\RequestException;
 

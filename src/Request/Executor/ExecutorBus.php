@@ -5,9 +5,9 @@ namespace Spot\Api\Request\Executor;
 use Pimple\Container;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use Spot\Api\Request\Message\RequestInterface;
+use Spot\Api\Request\RequestInterface;
 use Spot\Api\Response\Message\NotFoundResponse;
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Response\ResponseInterface;
 use Spot\Api\Response\ResponseException;
 use Spot\Api\LoggableTrait;
 

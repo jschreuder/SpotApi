@@ -4,6 +4,7 @@ namespace Spot\Api\Request\Message;
 
 use Psr\Http\Message\RequestInterface as HttpRequestInterface;
 use Spot\Api\Message\AttributesArrayAccessTrait;
+use Spot\Api\Request\RequestInterface;
 
 abstract class AbstractRequest implements RequestInterface
 {

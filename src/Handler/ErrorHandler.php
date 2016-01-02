@@ -4,10 +4,10 @@ namespace Spot\Api\Handler;
 
 use Psr\Http\Message\ResponseInterface as HttpResponse;
 use Spot\Api\Request\Executor\ExecutorInterface;
-use Spot\Api\Request\Message\RequestInterface;
+use Spot\Api\Request\RequestInterface;
 use Spot\Api\Response\Generator\GeneratorInterface;
 use Spot\Api\Response\Message\Response;
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Response\ResponseInterface;
 use Spot\Api\Response\Http\JsonApiErrorResponse;
 
 class ErrorHandler implements ExecutorInterface, GeneratorInterface

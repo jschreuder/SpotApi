@@ -2,8 +2,8 @@
 
 namespace Spot\Api\Request\Executor;
 
-use Spot\Api\Request\Message\RequestInterface;
-use Spot\Api\Response\Message\ResponseInterface;
+use Spot\Api\Request\RequestInterface;
+use Spot\Api\Response\ResponseInterface;
 
 interface ExecutorInterface
 {

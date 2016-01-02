@@ -31,7 +31,7 @@ class ErrorHandlerSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
     public function it_canExecuteARequest($request)
@@ -45,7 +45,7 @@ class ErrorHandlerSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Request\Message\RequestInterface $request
+     * @param  \Spot\Api\Request\RequestInterface $request
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
     public function it_canPassOnErrorsToTheResponse($request)
@@ -61,7 +61,7 @@ class ErrorHandlerSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
     public function it_canGenerateAResponse($response)
@@ -75,7 +75,7 @@ class ErrorHandlerSpec extends ObjectBehavior
     }
 
     /**
-     * @param  \Spot\Api\Response\Message\ResponseInterface $response
+     * @param  \Spot\Api\Response\ResponseInterface $response
      * @param  \Psr\Http\Message\RequestInterface $httpRequest
      */
     public function it_canGenerateAResponseWithGivenErrors($response)

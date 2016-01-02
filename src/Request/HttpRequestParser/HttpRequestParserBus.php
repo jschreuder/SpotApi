@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as ServerHttpRequest;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Spot\Api\Request\Message\NotFoundRequest;
-use Spot\Api\Request\Message\RequestInterface;
+use Spot\Api\Request\RequestInterface;
 use Spot\Api\Request\Message\ServerErrorRequest;
 use Spot\Api\LoggableTrait;
 use Spot\Api\Request\RequestException;
