@@ -29,8 +29,10 @@ class JsonApiParser implements ApplicationInterface
         $parsedBody = json_decode($body, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
             return new JsonApiErrorResponse([
-                'title' => 'Invalid JSON, couldn\'t decode.',
-                'status' => '400'
+                [
+                    'title' => 'Invalid JSON, couldn\'t decode.',
+                    'status' => '400',
+                ],
             ], 400);
         }
 
