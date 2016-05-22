@@ -18,14 +18,14 @@
         "psr/log-implementation": "~1.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "dev-master",
-        "phpspec/prophecy": "dev-master",
+        "phpspec/phpspec": "^2.5",
+        "phpspec/prophecy": "^1.6",
         "henrikbjorn/phpspec-code-coverage": "^2.0",
         "zendframework/zend-diactoros": "^1.1",
         "monolog/monolog": "^1.17",
         "pimple/pimple": "^3.0",
-        "nikic/fast-route": "~0.6.0",
-        "tobscure/json-api": "~0.2.1"
+        "nikic/fast-route": "^1.0",
+        "tobscure/json-api": "^0.2"
     },
     "suggest": {
         "pimple/pimple": "Required for the HttpRequestParserBus, ExecutorBus & GeneratorBus",
