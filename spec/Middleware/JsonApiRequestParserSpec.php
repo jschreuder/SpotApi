@@ -36,10 +36,12 @@ class JsonApiRequestParserSpec extends ObjectBehavior
     public function it_can_execute($httpRequest1, $httpRequest2, $body, $httpResponse)
     {
         $array = ['body' => 'the answer to life, the universe and everything', 'status' => 42];
+        $json = json_encode($array);
 
         $httpRequest1->getHeaderLine('Content-Type')->willReturn('application/vnd.api+json');
         $httpRequest1->getBody()->willReturn($body);
-        $body->getContents()->willReturn(json_encode($array));
+        $body->getSize()->willReturn(strlen($json));
+        $body->getContents()->willReturn($json);
 
         $httpRequest1->withParsedBody($array)->willReturn($httpRequest2);
         $this->application->execute($httpRequest2)->willReturn($httpResponse);
@@ -55,8 +57,6 @@ class JsonApiRequestParserSpec extends ObjectBehavior
     public function it_wont_touch_non_json_api_requests($httpRequest, $body, $httpResponse)
     {
         $httpRequest->getHeaderLine('Content-Type')->willReturn('text/html');
-        $httpRequest->getBody()->willReturn($body);
-        $body->getContents()->willReturn('test');
         $this->application->execute($httpRequest)->willReturn($httpResponse);
         $this->execute($httpRequest)->shouldReturn($httpResponse);
     }
@@ -70,7 +70,7 @@ class JsonApiRequestParserSpec extends ObjectBehavior
     {
         $httpRequest->getHeaderLine('Content-Type')->willReturn('application/vnd.api+json');
         $httpRequest->getBody()->willReturn($body);
-        $body->getContents()->willReturn('');
+        $body->getSize()->willReturn(strlen(''));
         $this->application->execute($httpRequest)->willReturn($httpResponse);
         $this->execute($httpRequest)->shouldReturn($httpResponse);
     }
@@ -81,9 +81,11 @@ class JsonApiRequestParserSpec extends ObjectBehavior
      */
     public function it_will_error_on_non_json_body($httpRequest, $body)
     {
+        $notJson = 'i-am-not-JSON';
         $httpRequest->getHeaderLine('Content-Type')->willReturn('application/vnd.api+json');
         $httpRequest->getBody()->willReturn($body);
-        $body->getContents()->willReturn('i-am-not-JSON');
+        $body->getSize()->willReturn(strlen($notJson));
+        $body->getContents()->willReturn($notJson);
         $response = $this->execute($httpRequest);
         $response->shouldHaveType(JsonApiErrorResponse::class);
     }

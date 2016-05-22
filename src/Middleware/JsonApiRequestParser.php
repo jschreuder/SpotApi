@@ -21,12 +21,12 @@ class JsonApiRequestParser implements ApplicationInterface
     public function execute(ServerHttpRequest $httpRequest) : HttpResponse
     {
         // Only works on requests with non-empty JSON bodies
-        $body = $httpRequest->getBody()->getContents();
-        if ($httpRequest->getHeaderLine('Content-Type') !== 'application/vnd.api+json' || empty($body)) {
+        if ($httpRequest->getHeaderLine('Content-Type') !== 'application/vnd.api+json'
+            || $httpRequest->getBody()->getSize() === 0) {
             return $this->application->execute($httpRequest);
         }
 
-        $parsedBody = json_decode($body, true);
+        $parsedBody = json_decode($httpRequest->getBody()->getContents(), true);
         if (json_last_error() !== JSON_ERROR_NONE) {
             return new JsonApiErrorResponse([
                 [
