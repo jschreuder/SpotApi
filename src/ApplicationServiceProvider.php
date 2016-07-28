@@ -132,11 +132,21 @@ class ApplicationServiceProvider implements ServiceProviderInterface
     /** {@inheritdoc} */
     public function register(Container $container)
     {
+        $container['app.httpRequestParser'] = function () {
+            return $this->getHttpRequestParser();
+        };
+        $container['app.executor'] = function () {
+            return $this->getExecutor();
+        };
+        $container['app.generator'] = function () {
+            return $this->getGenerator();
+        };
+
         $container['app'] = function(Container $container) {
             return new Application(
-                $this->getHttpRequestParser(),
-                $this->getExecutor(),
-                $this->getGenerator(),
+                $container['app.httpRequestParser'],
+                $container['app.executor'],
+                $container['app.generator'],
                 $container['logger']
             );
         };

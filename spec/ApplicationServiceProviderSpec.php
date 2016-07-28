@@ -120,6 +120,12 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
      */
     public function it_can_register_the_app($container)
     {
+        $container->offsetSet('app.httpRequestParser', new Argument\Token\TypeToken(\Closure::class))
+            ->shouldBeCalled();
+        $container->offsetSet('app.executor', new Argument\Token\TypeToken(\Closure::class))
+            ->shouldBeCalled();
+        $container->offsetSet('app.generator', new Argument\Token\TypeToken(\Closure::class))
+            ->shouldBeCalled();
         $container->offsetSet('app', new Argument\Token\TypeToken(\Closure::class))
             ->shouldBeCalled();
         $this->register($container);
