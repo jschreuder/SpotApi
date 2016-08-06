@@ -25,12 +25,14 @@
         "monolog/monolog": "^1.17",
         "pimple/pimple": "^3.0",
         "nikic/fast-route": "^1.0",
-        "tobscure/json-api": "^0.2"
+        "tobscure/json-api": "^0.2",
+        "paragonie/csp-builder": "^2.0"
     },
     "suggest": {
         "pimple/pimple": "Required for the HttpRequestParserBus, ExecutorBus & GeneratorBus",
         "nikic/fast-route": "Required for the HttpRequestParserBus",
-        "tobscure/json-api": "Required for the Single- and MultiEntityGenerator and ErrorHandler"
+        "tobscure/json-api": "Required for the Single- and MultiEntityGenerator and ErrorHandler",
+        "paragonie/csp-builder": "When using Content-Security-Policy middleware"
     },
     "autoload": {
         "psr-4": {
