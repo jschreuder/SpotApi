@@ -23,18 +23,18 @@ basically HTTP request handlers.
 The Application
 ---------------
 
-When you go into the `Application` class you'll see the execution runs through
+When you go into the ``Application`` class you'll see the execution runs through
 these three stages:
 
 **1. HTTP Request mapping (routing & request validation)**
 
 In the first stage the HTTP Request object (a PSR-7 ServerRequest) is mapped to
-a `Spot\Api\Application\Request\RequestInterface` implementation. At this stage
-the first bit of routing is being done by choosing the Request's name. This is
-also where basic input validation should be done: does the request adhere to
-the way you are expecting the request data to be given, and any filtering and
-casts should also be done here. This will allow stage 2 to have a lot cleaner
-code.
+a ``Spot\Api\Application\Request\RequestInterface`` implementation. At this
+stage the first bit of routing is being done by choosing the Request's name.
+This is also where basic input validation should be done: does the request
+adhere to the way you are expecting the request data to be given, and any
+filtering and casts should also be done here. This will allow stage 2 to have a
+lot cleaner code.
 
 **2. Request Executor (controller)**
 
@@ -43,7 +43,7 @@ allowed in here, and should never be done in either the first or third stage.
 If you've done validated the input already in the first stage, you can start
 working with the input data immediately without any further checks.
 
-The result should be a `Spot\Api\Application\Response\ResponseInterface`
+The result should be a ``Spot\Api\Application\Response\ResponseInterface``
 implementation with data necessary for output. It should not do any formatting
 of that data, or retrieve things that are necessary for output but not for
 executing the request.
@@ -66,11 +66,11 @@ RequestInterface & ResponseInterface messages
 ---------------------------------------------
 
 The Application expects a HTTP request to be mapped to a
-`Spot\Api\Application\Request\RequestInterface` instance, which is executed to
-result in a `Spot\Api\Application\Response\ResponseInterface` which in turn
-will be used to generate a HTTP response. These messages consist of at least a
-name, a content-type and attributes. They also implement the `ArrayAccess`
-interface to allow direct access to their attributes.
+``Spot\Api\Application\Request\RequestInterface`` instance, which is executed
+to result in a ``Spot\Api\Application\Response\ResponseInterface`` which in
+turn will be used to generate a HTTP response. These messages consist of at
+least a name, a content-type and attributes. They also implement the
+``ArrayAccess`` interface to allow direct access to their attributes.
 
 How to handle multiple use-cases: buses
 ---------------------------------------
@@ -83,17 +83,17 @@ compatible with a single-use-case implementation of the layer.
 **HttpRequestParserBus**
 
 This bus is the most complex, as it uses a FastRouter instance to map a PSR7
-message to a native Request implementing the `HttpRequestParserInterface`. You
-can register paths & HTTP methods with it and map them to names from your DiC
-that must create valid `HttpRequestParserInterface` instances. This bus will
-then delegate the actual parsing to that instance.
+message to a native Request implementing the ``HttpRequestParserInterface``.
+You can register paths & HTTP methods with it and map them to names from your
+DiC that must create valid ``HttpRequestParserInterface`` instances. This bus
+will then delegate the actual parsing to that instance.
 
 **ExecutorBus & GeneratorBus**
 
 These work similar to the HttpRequestParserBus but use simple direct matches
 instead of a router. They take the Request or Response object's name and check
 if it is known and leads to a valid name from your DiC which in turn should
-create valid `ExecutorInterface` or `GeneratorInterface` instances.
+create valid ``ExecutorInterface`` or ``GeneratorInterface`` instances.
 
 While more complex applications might benefit from routers in these buses, for
 most use-cases these simple ones will suffice.
