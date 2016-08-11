@@ -23,6 +23,9 @@ class ApplicationServiceProvider implements ServiceProviderInterface
     /** @var  HttpRequestParserBus */
     private $router;
 
+    /** @var  string */
+    private $routeRoot;
+
     /** @var  RouteCollector */
     private $routeCollector;
 
@@ -38,12 +41,14 @@ class ApplicationServiceProvider implements ServiceProviderInterface
     public function __construct(
         Container $container,
         HttpRequestParserBus $router,
+        string $routeRoot,
         RouteCollector $routeCollector,
         ExecutorBus $executorBus,
         GeneratorBus $generatorBus
     ) {
         $this->container = $container;
         $this->router = $router;
+        $this->routeRoot = $routeRoot;
         $this->routeCollector = $routeCollector;
         $this->executorBus = $executorBus;
         $this->generatorBus = $generatorBus;
@@ -95,7 +100,7 @@ class ApplicationServiceProvider implements ServiceProviderInterface
 
     public function addParser(string $method, string $path, string $httpRequestParser) : ApplicationServiceProvider
     {
-        $this->routeCollector->addRoute($method, $path, $httpRequestParser);
+        $this->routeCollector->addRoute($method, $this->routeRoot . $path, $httpRequestParser);
         return $this;
     }
 

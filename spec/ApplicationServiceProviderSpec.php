@@ -16,6 +16,8 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
     /** @var  \Spot\Api\Request\HttpRequestParser\HttpRequestParserBus */
     private $router;
 
+    private $routeRoot = '/app';
+
     /** @var  \FastRoute\RouteCollector */
     private $routeCollector;
 
@@ -40,7 +42,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
         $this->executorBus = $executorBus;
         $this->generatorBus = $generatorBus;
 
-        $this->beConstructedWith($container, $router, $routeCollector, $executorBus, $generatorBus);
+        $this->beConstructedWith($container, $router, $this->routeRoot, $routeCollector, $executorBus, $generatorBus);
     }
 
     public function it_is_initializable()
@@ -70,7 +72,7 @@ class ApplicationServiceProviderSpec extends ObjectBehavior
         $method = 'GET';
         $path = '/some/way';
         $parser = 'my.way';
-        $this->routeCollector->addRoute($method, $path, $parser)
+        $this->routeCollector->addRoute($method, $this->routeRoot . $path, $parser)
             ->shouldBeCalled();
         $this->addParser($method, $path, $parser)
             ->shouldReturn($this);
