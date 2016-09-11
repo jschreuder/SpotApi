@@ -1,14 +1,14 @@
 SpotApi
 =======
 
-.. image:: https://secure.travis-ci.org/WebspotCode/SpotApi.png
-   :target: http://travis-ci.org/WebspotCode/SpotApi
+.. image:: https://secure.travis-ci.org/jschreuder/SpotApi.png
+   :target: http://travis-ci.org/jschreuder/SpotApi
    :alt: Build status
-.. image:: https://scrutinizer-ci.com/g/WebspotCode/SpotApi/badges/quality-score.png?b=master
-   :target: https://scrutinizer-ci.com/g/WebspotCode/SpotApi/?branch=master
+.. image:: https://scrutinizer-ci.com/g/jschreuder/SpotApi/badges/quality-score.png?b=master
+   :target: https://scrutinizer-ci.com/g/jschreuder/SpotApi/?branch=master
    :alt: Scrutinizer Code Quality
-.. image:: https://scrutinizer-ci.com/g/WebspotCode/SpotApi/badges/coverage.png?b=master
-   :target: https://scrutinizer-ci.com/g/WebspotCode/SpotApi/?branch=master
+.. image:: https://scrutinizer-ci.com/g/jschreuder/SpotApi/badges/coverage.png?b=master
+   :target: https://scrutinizer-ci.com/g/jschreuder/SpotApi/?branch=master
    :alt: Code Coverage
 
 There are many tasks for which a literal MVC implementation isn't ideal. The
